@@ -2,9 +2,9 @@ pipeline {
     agent any
         
     stages {
-        stage('Build'){
+        stage('Run Juiceshop'){
             steps {
-                echo 'Building..'
+                sh docker run --rm -p 3000:3000 bkimminich/juice-shop
             }
         }
         stage('Test'){
