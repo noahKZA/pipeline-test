@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Run Juiceshop'){
             steps {
-                sh docker run --rm -p 3000:3000 bkimminich/juice-shop
+                sh " docker run --rm -p 3000:3000 bkimminich/juice-shop" 
             }
         }
         stage('Test'){
