@@ -6,5 +6,5 @@ services:
     ports: 
       - "3000:3000"
     healthcheck: 
-      test:  ["CMD", "curl", "-f", "-start-period=30","http://localhost:3000"]
+      test:  ["CMD", "wget","--start-period=30","http://localhost:3000"]
 
