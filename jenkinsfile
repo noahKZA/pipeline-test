@@ -4,9 +4,7 @@ pipeline {
     stages {
         stage('Run Juiceshop') {
             steps {
-                sh 'docker-compose up -d'
-
-                
+                sh 'docker-compose up -d'    
             }
         }
     }
