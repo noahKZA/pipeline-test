@@ -5,3 +5,6 @@ services:
     image: "bkimminich/juice-shop"
     ports: 
       - "3000:3000"
+    healthcheck: 
+      test:  ["/bin/sh", "curl", "-f", "-start-period=30","http://localhost:3000"]
+
