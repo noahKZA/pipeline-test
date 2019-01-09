@@ -6,5 +6,7 @@ services:
     ports: 
       - "3000:3000"
     healthcheck: 
-      test:  ["CMD", "wget","--start-period=30","http://localhost:3000"]
+      test:  ["CMD", "wget", "http://localhost:3000"]
+      interval: 10s
+      start-period: 20s
 
