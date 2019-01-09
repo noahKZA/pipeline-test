@@ -8,13 +8,13 @@ pipeline {
 
                 retry = 0
                 while(!status.contains("#httpcode:200")){
-                 if(retry > 10){
-                    error("Took to long for juiceshop to be deployed")
+                    if(retry > 10){
+                        error("Took to long for juiceshop to be deployed")
                     }
-                sleep 100
-                 status = sh returnStdout: true, script: "curl -I \"#httpcode:%{http_code}\\n\" \"http://localhost3000\""
-                retry++
-                    }
+                    sleep 100
+                    status = sh returnStdout: true, script: "curl -I \"#httpcode:%{http_code}\\n\" \"http://localhost3000\""
+                    retry++
+                }
             }
         }
     }
