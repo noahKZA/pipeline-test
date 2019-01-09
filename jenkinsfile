@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    Stages {
+    stages {
         stage('Run Juiceshop') {
             step {
                 echo 'running your damn shop..'
