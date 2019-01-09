@@ -4,7 +4,17 @@ pipeline {
     stages {
         stage('Run Juiceshop') {
             steps {
-                sh 'docker run --rm -p 3000:3000 bkimminich/juice-shop'
+                sh 'docker run --rm -p 3000:3000 --name juiceShop bkimminich/juice-shop'
+
+                retry = 0
+                while(!status.contains("#httpcode:200")){
+                 if(retry > 10){
+                    error("Took to long for the service '${serviceToCheck}' to be deployed")
+                    }
+                sleep 100
+                 status = sh returnStdout: true, script: "curl -I \"#httpcode:%{http_code}\\n\" \"http://localhost3000\""
+                retry++
+                    }
             }
         }
     }
