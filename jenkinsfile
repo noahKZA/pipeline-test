@@ -7,5 +7,12 @@ pipeline {
                 sh 'docker-compose up -d'    
             }
         }
+        stage('Run OWASP ZAP image') {
+            steps {
+                sh 'docker pull owasp/zap2docker-stable'
+
+                echo 'first check pull, than run'
+            }
+        }
     }
 }
