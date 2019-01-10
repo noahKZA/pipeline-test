@@ -13,7 +13,7 @@ pipeline {
 
                 echo 'first check pull, than run'
 
-                sh 'docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:3000 -r testreport.html'
+                sh 'docker run -p 8081:8081 -t owasp/zap2docker-weekly zap-baseline.py -t https://www.kza.nl'
             }
         }
     }
