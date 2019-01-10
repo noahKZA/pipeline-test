@@ -16,5 +16,10 @@ pipeline {
                 sh 'docker run -p 8081:8081 -t owasp/zap2docker-weekly zap-baseline.py -t http://172.18.0.1:3000 || exit 0'
             }
         }
+        stage('Run Defectdojo as service'){
+            steps {
+                echo 'Hier moet dan iets komen voor defectdojo'
+            }
+        }
     }
 }
