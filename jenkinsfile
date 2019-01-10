@@ -12,6 +12,8 @@ pipeline {
                 sh 'docker pull owasp/zap2docker-stable'
 
                 echo 'first check pull, than run'
+
+                sh 'docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://localhost:3000 -r testreport.html'
             }
         }
     }
