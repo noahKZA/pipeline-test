@@ -15,7 +15,7 @@ pipeline {
 
                 sh 'pwd'
 
-                sh 'sudo docker run -p 8081:8081 -v $(pwd):/zap/wrk/ -t owasp/zap2docker-weekly zap-baseline.py -t http://172.18.0.1:3000 -r testreport.html || exit 0'
+                sh 'docker run -p 8081:8081 -v $(pwd):/zap/wrk/ -t owasp/zap2docker-weekly zap-baseline.py -t http://172.18.0.1:3000 -r testreport.html || exit 0'
             }
         }
         stage('Run Defectdojo as service'){
