@@ -31,7 +31,7 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: true,
-                    reportDir: "../out",
+                    reportDir: "./out",
                     reportFiles: "testreport.html",
                     reportName: "Security Report(OWASP)"
                 ])
