@@ -22,6 +22,15 @@ pipeline {
                 sh 'chmod 777 $PWD/out'
 
                 sh 'docker run -p 8081:8081 -v $(pwd)/out:/zap/wrk/ -t owasp/zap2docker-weekly zap-baseline.py -t http://172.18.0.1:3000 -r testreport.html || exit 0'
+
+                publishHTML (target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: "../out",
+                    reportFiles: "testreport.html",
+                    reportName: "Security Report(OWASP)"
+                ])
             }
         }
         stage('Run Defectdojo as service'){
