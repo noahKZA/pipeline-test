@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Run bodgeIT') {
             steps {
-                sh docker run --rm -p 8082:8082 -i -t psiinon/bodgeit''
+                sh 'docker run --rm -p 8082:8082 -i -t psiinon/bodgeit'
             }
         }
         stage('Run OWASP ZAP image') {
