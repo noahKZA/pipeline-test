@@ -7,18 +7,11 @@ pipeline {
                 sh 'docker-compose up -d'    
             }
         }
-        stage('Run bodgeIT') {
-            steps {
-                sh 'docker run --rm -p 8082:8082 -i -t psiinon/bodgeit'
-            }
-        }
         stage('Run OWASP ZAP image') {
             steps {
                 sh 'docker pull owasp/zap2docker-stable'
 
                 echo 'first check pull, than run'
-
-                sh 'pwd'
 
                 echo 'aanmaken rirectory voor report'
                 sh 'mkdir -p $PWD/out'
