@@ -6,12 +6,28 @@ from pprint import pprint
 from zapv2 import ZAPv2
 
 target = 'http://zero.webappsecurity.com/'
-apikey = None # Change to match the API key set in ZAP, or use None if the API key is disabled
+apikey = 'bd5kngqr6bjd5tkpkhhmhvmm2e' # Change to match the API key set in ZAP, or use None if the API key is disabled
+context_naam = "TestContext"
+
 #
 # By default ZAP API client will connect to port 8080
 zap = ZAPv2(apikey=apikey)
 # Use the line below if ZAP is not listening on port 8080, for example, if listening on port 8090
 # zap = ZAPv2(apikey=apikey, proxies={'http': 'http://127.0.0.1:8090', 'https': 'http://127.0.0.1:8090'})
+
+# Import authentication script used in context
+#zap.script.load("Test_authentication", "authentication", "Oracle Nashorn", "test.js")
+
+#set selenium PhantomJS
+#zap.selenium.set_option_phantom_js_binary_path('D:\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe', apikey=apikey)
+
+#import context with authentication script
+zap.context.import_context(contextfile = context_naam, apikey=apikey)
+zap.context.set_context_in_scope(context_naam ,True, apikey=apikey)
+
+#set forced user
+zap.forcedUser.set_forced_user(2,0,apikey=apikey)
+zap.forcedUser.set_forced_user_mode_enabled(True,apikey=apikey)
 
 # Proxy a request to the target so that ZAP has something to deal with
 print('Accessing target {}'.format(target))
@@ -29,6 +45,18 @@ while (int(zap.spider.status(scanid)) < 100):
     time.sleep(2)
 
 print ('Spider completed')
+
+#Also ajax spider that has to run
+# print(f'Ajax spider going to work now on {target}')
+# scanid = zap.ajaxSpider.scan(target)
+# time.sleep(2)
+# while zap.ajaxSpider.status != 'stopped':
+#     #Loop until the spider has finished
+#     print('Ajax spider is busy')
+#     time.sleep(4)
+
+# print ('Ajax spider completed')
+    
 
 while (int(zap.pscan.records_to_scan) > 0):
       print ('Records to passive scan : {}'.format(zap.pscan.records_to_scan))
@@ -50,3 +78,6 @@ print ('Active Scan completed')
 print ('Hosts: {}'.format(', '.join(zap.core.hosts)))
 print ('Alerts: ')
 pprint (zap.core.alerts())
+
+with open ('report.html', 'w' ) as f:
+    f.write(zap.core.htmlreport(apikey=apikey))
