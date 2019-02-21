@@ -6,7 +6,7 @@ from pprint import pprint
 from zapv2 import ZAPv2
 
 target = 'http://zero.webappsecurity.com/'
-apikey = 'bd5kngqr6bjd5tkpkhhmhvmm2e' # Change to match the API key set in ZAP, or use None if the API key is disabled
+apikey = 'bav0q7pv2ejaclej4hqsnd7r14' # Change to match the API key set in ZAP, or use None if the API key is disabled
 context_naam = "TestContext"
 
 #
