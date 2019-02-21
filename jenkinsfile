@@ -39,7 +39,7 @@ pipeline {
             steps {
                 sh 'pwd'
 
-                sh 'sh /opt/zapproxy/zap.sh -daemon'
+                sh 'sh ../../../../../opt/zapproxy/zap.sh -daemon'
 
                 sh 'python testscript.py'
             }
