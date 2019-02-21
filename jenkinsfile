@@ -37,7 +37,7 @@ pipeline {
         }
         stage('ZAP from Daemon/api') {
             steps {
-                sh 'echo $pwd'
+                sh 'pwd'
 
                 sh 'sh /opt/zapproxy/zap.sh -daemon'
 
