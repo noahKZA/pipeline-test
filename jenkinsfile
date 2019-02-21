@@ -35,5 +35,12 @@ pipeline {
                 ])
             }
         }
+        stage('ZAP from Daemon/api') {
+            steps {
+                sh 'java -jar /opt/zapproxy/zap-2.7.0.jar -daemon'
+
+                sh 'python testscript.py'
+            }
+        }
     }
 }
