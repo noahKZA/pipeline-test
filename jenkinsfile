@@ -35,10 +35,5 @@ pipeline {
                 ])
             }
         }
-        stage('ZAP from Daemon/api') {
-            steps {
-                sh 'python testscript.py'
-            }
-        }
     }
 }
